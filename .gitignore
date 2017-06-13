@@ -3,6 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+*.project
+*.pydevproject
+
+.settings/
+
+output_mobil123_*
+
 # C extensions
 *.so
 
