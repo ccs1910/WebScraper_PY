@@ -9,13 +9,13 @@ import scrapy
 from scrapy import Field
 
 
-class Mobil123Item(scrapy.Item):
+class M123Item(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     year = Field()
     brand = Field()
+    model = Field()
     variant = Field()
     price = Field()
     location = Field()
     discount = Field()
-    

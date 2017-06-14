@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for mobil123 project
+# Scrapy settings for m123 project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'mobil123'
+BOT_NAME = 'm123'
 
-SPIDER_MODULES = ['mobil123.spiders']
-NEWSPIDER_MODULE = 'mobil123.spiders'
+SPIDER_MODULES = ['m123.spiders']
+NEWSPIDER_MODULE = 'm123.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'mobil123 (+http://www.yourdomain.com)'
+#USER_AGENT = 'm123 (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -46,14 +46,14 @@ COOKIES_ENABLED = False
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-# SPIDER_MIDDLEWARES = {
-#     'mobil123.middlewares.Mobil123SpiderMiddleware': 543,
-# }
+#SPIDER_MIDDLEWARES = {
+#    'm123.middlewares.M123SpiderMiddleware': 543,
+#}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'mobil123.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'm123.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +65,8 @@ COOKIES_ENABLED = False
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'mobil123.pipelines.CsvWriterPipeline': 300,
+    'm123.pipelines.CsvWriterPipeline': 300,
+    'm123.pipelines.PricePipeline':100,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
