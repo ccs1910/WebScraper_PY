@@ -12,6 +12,7 @@ from scrapy import Field
 class M123Item(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    listing_id = Field()
     year = Field()
     brand = Field()
     model = Field()

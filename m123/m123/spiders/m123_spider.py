@@ -14,7 +14,7 @@ from scrapy.linkextractors import LinkExtractor
 class M123Spider(CrawlSpider):
     name = "m123"
     allowed_domains = ['mobil123.com']
-    start_urls = ['https://www.mobil123.com/mobil-bekas-dijual/indonesia',]
+    start_urls = ['https://www.mobil123.com/mobil-bekas-dijual/indonesia_jabodetabek?sort=modification_date_search.desc',]
         
     rules = (
         Rule(LinkExtractor(allow=(), restrict_css=('li.next > a',)),
@@ -23,7 +23,6 @@ class M123Spider(CrawlSpider):
     
     
     def parse_item(self, response):
-        
         
         self.logger.info('Starts : %s',response.url)
        
@@ -39,6 +38,8 @@ class M123Spider(CrawlSpider):
             
             item['location'] = locationList[1].strip()
             
+            
+            item['listing_id'] = result.css('::attr(data-listing-id)').extract_first()
             item['year'] = result.css('::attr(data-year)').extract_first()#data[0]
             item['brand'] = result.css('::attr(data-make)').extract_first()#data[1]
             item['model'] = result.css('::attr(data-model)').extract_first()
@@ -55,6 +56,8 @@ class M123Spider(CrawlSpider):
               
         return items
         self.logger.info('ends')
+        
+    parse_start_url = parse_item
         
 
             

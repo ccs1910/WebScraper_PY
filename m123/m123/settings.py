@@ -14,6 +14,8 @@ BOT_NAME = 'm123'
 SPIDER_MODULES = ['m123.spiders']
 NEWSPIDER_MODULE = 'm123.spiders'
 
+# Close Spider if the maximum number of responses is reached. For number of Pages, formula is n-1  
+CLOSESPIDER_PAGECOUNT = 1001
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'm123 (+http://www.yourdomain.com)'
