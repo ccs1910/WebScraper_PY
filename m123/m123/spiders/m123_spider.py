@@ -38,7 +38,7 @@ class M123Spider(CrawlSpider):
             
             item['location'] = locationList[1].strip()
             
-            
+            item['transmission'] = result.css('::attr(data-transmission)').extract_first()
             item['listing_id'] = result.css('::attr(data-listing-id)').extract_first()
             item['year'] = result.css('::attr(data-year)').extract_first()#data[0]
             item['brand'] = result.css('::attr(data-make)').extract_first()#data[1]

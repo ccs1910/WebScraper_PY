@@ -20,3 +20,4 @@ class M123Item(scrapy.Item):
     price = Field()
     location = Field()
     discount = Field()
+    transmission = Field()

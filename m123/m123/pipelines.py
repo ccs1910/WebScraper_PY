@@ -21,6 +21,7 @@ class CsvWriterPipeline(object):
         filename = "output_m123_"+time.strftime("%Y%m%d-%H%M%S")
         self.file = open(filename+'.csv', 'w+b')
         self.exporter = CsvItemExporter(self.file)
+        self.exporter.fields_to_export = ["listing_id","brand","model","variant","transmission","year","location","price","discount"]
         self.exporter.start_exporting()
     
     
