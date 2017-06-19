@@ -43,7 +43,7 @@ class M123Spider(CrawlSpider):
             item['year'] = result.css('::attr(data-year)').extract_first()#data[0]
             item['brand'] = result.css('::attr(data-make)').extract_first()#data[1]
             item['model'] = result.css('::attr(data-model)').extract_first()
-            item['variant'] = ((result.css('::attr(data-display-title)').extract_first().strip()).split(" ",2))[2] #data[2] 
+            item['title'] = result.css('::attr(data-display-title)').extract_first().strip() #data[2]
             
             item['discount'] = result.css('::attr(data-hot-deal)').extract_first()
   
