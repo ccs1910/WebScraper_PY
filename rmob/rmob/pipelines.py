@@ -21,7 +21,7 @@ class CsvWriterPipeline(object):
         return pipeline
     
     def spider_opened(self, spider):
-        filename = "output_m123_"+time.strftime("%Y%m%d-%H%M%S")
+        filename = "output_rmob_"+time.strftime("%Y%m%d-%H%M%S")
         self.file = open(filename+'.csv', 'w+b')
         self.exporter = CsvItemExporter(self.file)
         self.exporter.fields_to_export = ["id","brand","full_title","year","transmission","price"]
