@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = 'm123.spiders'
 CLOSESPIDER_PAGECOUNT = 1001
 
 # Extension for CSV Exporter to export fields in order. 
-# FEED_EXPORT_FIELDS = ["listing_id","brand","model","variant","transmission","year","location","price","discount"]
+# FEED_EXPORT_FIELDS = ["listing_id","brand","model","title","transmission","year","location","price","discount"]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'm123 (+http://www.yourdomain.com)'

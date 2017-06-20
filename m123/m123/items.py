@@ -16,7 +16,7 @@ class M123Item(scrapy.Item):
     year = Field()
     brand = Field()
     model = Field()
-    variant = Field()
+    title = Field()
     price = Field()
     location = Field()
     discount = Field()
