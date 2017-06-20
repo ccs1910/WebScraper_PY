@@ -10,6 +10,7 @@ from scrapy import signals
 from scrapy.exporters import CsvItemExporter
 from scrapy.exceptions import DropItem
 import time
+from logging import exception
 
 class CsvWriterPipeline(object):
     @classmethod
@@ -41,12 +42,17 @@ class PricePipeline(object):
     vat_factor = 1.15
 
     def process_item(self, item, spider):
-        if item['price']:
-#             if item['price_excludes_vat']:
-#                 item['price'] = item['price'] * self.vat_factor
-            #change to integer
-#             format price : Rp. 80.000.000
-            item['price'] = float(item['price'].strip("Rp.").strip().replace(".",""))
-            return item
-        else:
-            raise DropItem("Missing price in %s" % item)
+        
+        try :
+            if item['price'] : #or item['price'].lower() != 'call' :
+        #             if item['price_excludes_vat']:
+        #                 item['price'] = item['price'] * self.vat_factor
+                #change to integer
+        #             format price : Rp. 80.000.000
+                item['price'] = float(item['price'].strip("Rp.").strip().replace(".",""))
+                return item
+            else:
+                raise DropItem("Missing price in : %s" % item)
+                           
+        except :
+            raise DropItem("Convert to float is FAILED, value : %s" % item['price'])

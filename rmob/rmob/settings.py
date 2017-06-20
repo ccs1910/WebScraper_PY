@@ -15,7 +15,7 @@ SPIDER_MODULES = ['rmob.spiders']
 NEWSPIDER_MODULE = 'rmob.spiders'
 
 # Close Spider if the maximum number of responses is reached. For number of Pages, formula is n-1  
-CLOSESPIDER_PAGECOUNT = 1001
+CLOSESPIDER_PAGECOUNT = 4001
 CLOSESPIDER_ERRORCOUNT = 3
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

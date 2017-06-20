@@ -12,7 +12,10 @@ from scrapy.linkextractors import LinkExtractor
 class RmobSpider(CrawlSpider):
     name = "rmob"
     allowed_domains = ['rajamobil.com']
-    start_urls = ['https://www.rajamobil.com/jual/mobil/bekas?lokasi=jadetabek',]
+    start_urls = [
+#         'https://www.rajamobil.com/jual/mobil/bekas?lokasi=jadetabek&page=210',
+                'https://www.rajamobil.com/jual/mobil/bekas?lokasi=jadetabek',
+                  ]
     
     rules = (
         Rule(LinkExtractor(allow=(), restrict_css=('li.next > a',)),
