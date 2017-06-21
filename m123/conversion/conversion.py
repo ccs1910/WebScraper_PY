@@ -67,6 +67,10 @@ class PriceDb():
         # Remove duplicate words
         variant = self._remove_duplicate_words(variant)
 
+        # Don't add the entry if the variant becomes empty.
+        if len(variant) == 0:
+            return
+
         # Add M/T or A/T to indicate transmission.
         if transmission == 'Automatic':
             variant = variant + ' A/T'
@@ -122,11 +126,21 @@ class PriceDb():
 
 
     def _remove_duplicate_words(self, variant):
-        # Iterate from the last word until the first word.
         variant_words = variant.split()
-        for i in range(len(variant_words) - 1, 0, -1):
-            if variant_words.count(variant_words[i]) > 1:
-                variant_words.pop()
+        # Iterate from the last word until the first word.
+        for i in range(len(variant_words) - 1, -1, -1):
+            if variant_words[i] in variant_words[0:i]:
+                variant_words.pop(i)
+            elif (len(variant_words[i]) == 1
+                and variant_words[i].isdigit()
+                and variant_words[i] + '.0' in variant_words[0:i]):
+                # Remove if this word looks like '2' and '2.0' word exists.
+                variant_words.pop(i)
+            else:
+                match = re.match('(\d\.\d)L', variant_words[i])
+                if match and match.groups()[0] in variant_words[0:i]:
+                    # Remove if this word looks like '1.2L' and '1.2' word exists.
+                    variant_words.pop(i)
 
         # Reassemble the words again using space as separator.
         return ' '.join(variant_words)
