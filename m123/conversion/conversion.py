@@ -28,11 +28,19 @@ class PriceDb():
 
         # These are a list of keywords which can be found in title but should
         # be ignored.
-        self._ignorable_keywords = [ 'Automatic', 'Manual',
-            '4WD', 'Box', 'Car', 'Hatchback', 'Jeep', 'Minivans', 'MPV',
-            'Offroad', 'Sedan', 'SUV', 'Trucks', 'Van', 'Wagon', 'Pick-up' ]
-
-        # TODO. Is 'NA' a ignorable keyword?
+        self._ignorable_keywords = [
+            # Transmission
+            'Automatic', 'A/T', 'Manual', 'M/T',
+            # Body types
+            'Box', 'Hatchback', 'Jeep', 'Minibus', 'Minivans', 'MPV',
+            'Pick-up', 'Sedan', 'SUV', 'Trucks', 'Wagon'
+            # Possibly two words
+            'Car', 'Van', '4WD', 'Offroad',
+            # Specific technology
+            'i-VTEC',
+            # Miscellaneous
+            'NA', 'Na'
+        ]
 
         self._known_brand_typos = { 'KIA': 'Kia', 'MINI': 'Mini' }
         self._known_model_typos = {
@@ -118,12 +126,16 @@ class PriceDb():
                 # Remove an extra word. This will remove the likes of
                 # 'Compact Car', 'City Car', 'Sports Car', and 'Super Car'.
                 variant_words.pop()
-            last_word = variant_words[-1]
+            elif (last_word == 'Van' and len(variant_words) > 1
+                and variant_words[-2] in [ 'Blind', 'High' ]):
+                # This will remove the likes of 'Blind Van', and 'High Van'.
+                variant_words.pop()
+
+            if len(variant_words) > 0:
+                last_word = variant_words[-1]
 
         # Reassemble the words again using space as separator.
         return ' '.join(variant_words)
-
-
 
     def _remove_duplicate_words(self, variant):
         variant_words = variant.split()
