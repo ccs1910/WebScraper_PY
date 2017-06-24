@@ -1,5 +1,6 @@
 """Usage: python3 m123/conversion/conversion.py"""
 
+import re
 class PriceDb():
 
     """Data structure storing price.
