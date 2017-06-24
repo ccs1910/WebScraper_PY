@@ -1,9 +1,13 @@
 """Usage: python3 m123/conversion/conversion.py"""
 
 import re
+import statistics
+
+
+
 class PriceDb():
 
-    """Data structure storing price.
+    """Data structure for categorizing price and computing statistics.
 
     Use `insert` to add a new data point. Then use the compute functions to
     retrieve useful statistics of a particular category. You can also use
@@ -160,26 +164,6 @@ class PriceDb():
 
 
 
-    def compute_min(self, brand, model, year, variant):
-        pass
-
-    def compute_max(self, brand, model, year, variant):
-        pass
-
-    def compute_count(self, brand, model, year, variant):
-        pass
-
-    def compute_mean(self, brand, model, year, variant):
-        pass
-
-    def compute_median(self, brand, model, year, variant):
-        pass
-
-    def compute_modus(self, brand, model, year, variant):
-        pass
-
-
-
     def export(self):
         brands = self._db.keys()
         for brand in brands:
@@ -189,4 +173,16 @@ class PriceDb():
                 for year in years:
                     variants = self._db[brand][model][year].keys()
                     for variant in variants:
-                        print('%s - %s - %s - %s' % (brand, model, year, variant))
+                        self._export_single(brand, model, year, variant)
+
+    def _export_single(self, brand, model, year, variant):
+        assert brand in self._db
+        assert model in self._db[brand]
+        assert year in self._db[brand][model]
+        assert variant in self._db[brand][model][year]
+        assert len(self._db[brand][model][year][variant]) > 0
+        stats = list(map(lambda x: x(self._db[brand][model][year][variant]),
+            [ len, min, max, statistics.mean, statistics.median ]))
+        print('%s,%s,%s,%s,%s,%s,%s,%s,%s'
+            % (brand, model, year, variant,
+                stats[0], stats[1], stats[2], stats[3], stats[4]))
