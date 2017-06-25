@@ -38,7 +38,7 @@ class PriceDb():
             'Automatic', 'A/T', 'Manual', 'M/T',
             # Body types
             'Box', 'Hatchback', 'Jeep', 'Minibus', 'Minivans', 'MPV',
-            'Pick-up', 'Sedan', 'SUV', 'Trucks', 'Wagon'
+            'Pick-up', 'Sedan', 'SUV', 'Trucks', 'Wagon',
             # Possibly two words
             'Car', 'Van', '4WD', 'Offroad',
             # Specific technology
