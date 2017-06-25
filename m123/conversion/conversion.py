@@ -68,6 +68,27 @@ class PriceDb():
 
 
     def add(self, price, title, brand, model, year, transmission):
+        variant = self._convert_to_variant(title, brand, model, year,
+            transmission)
+
+        # Fix known typos.
+        for (typo, correction) in self._known_brand_typos.items():
+            brand = brand.replace(typo, correction)
+        for (typo, correction) in self._known_model_typos.items():
+            model = model.replace(typo, correction)
+
+        # Insert a new entry to the data structure.
+        if brand not in self._db:
+            self._db[brand] = {}
+        if model not in self._db[brand]:
+            self._db[brand][model] = {}
+        if year not in self._db[brand][model]:
+            self._db[brand][model][year] = {}
+        if variant not in self._db[brand][model][year]:
+            self._db[brand][model][year][variant] = []
+        self._db[brand][model][year][variant].append(price)
+
+    def _convert_to_variant(self, title, brand, model, year, transmission):
         variant = title
         # Remove any brand name, model name, and year from the variant.
         variant = variant.replace(brand, '')
@@ -98,27 +119,12 @@ class PriceDb():
             model = 'Mazda ' + model
 
         # Fix known typos.
-        for (typo, correction) in self._known_brand_typos.items():
-            brand = brand.replace(typo, correction)
-        for (typo, correction) in self._known_model_typos.items():
-            model = model.replace(typo, correction)
         for (typo, correction) in self._known_variant_typos.items():
             variant = variant.replace(typo, correction)
 
         # TODO. Engine displacement should be consistently before/after variant.
 
-        # Insert a new entry to the data structure.
-        if brand not in self._db:
-            self._db[brand] = {}
-        if model not in self._db[brand]:
-            self._db[brand][model] = {}
-        if year not in self._db[brand][model]:
-            self._db[brand][model][year] = {}
-        if variant not in self._db[brand][model][year]:
-            self._db[brand][model][year][variant] = []
-        self._db[brand][model][year][variant].append(price)
-
-
+        return variant
 
     def _remove_keywords(self, variant):
         variant_words = variant.split()
