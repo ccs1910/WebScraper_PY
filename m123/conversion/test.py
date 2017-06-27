@@ -11,6 +11,6 @@ for test_case in test_cases.price_db_variant_test_cases:
 	print('Input: %s\tExpected: %s' % (test_case['title'], test_case['expected']))
 	variant = db._convert_to_variant(test_case['title'], test_case['brand'],
         test_case['model'], test_case['year'], test_case['transmission'])
-	assert variant == test_case['expected']
+	assert variant == test_case['expected'], 'Invalid result: %s' % variant
 
 print('Test completed.')
