@@ -71,29 +71,37 @@ class PriceDb():
         variant = self._convert_to_variant(title, brand, model, year,
             transmission)
 
-        # Fix known typos.
-        for (typo, correction) in self._known_brand_typos.items():
-            brand = brand.replace(typo, correction)
-        for (typo, correction) in self._known_model_typos.items():
-            model = model.replace(typo, correction)
+        if variant is not None:
+            # Fix known typos.
+            for (typo, correction) in self._known_brand_typos.items():
+                brand = brand.replace(typo, correction)
+            for (typo, correction) in self._known_model_typos.items():
+                model = model.replace(typo, correction)
 
-        # Insert a new entry to the data structure.
-        if brand not in self._db:
-            self._db[brand] = {}
-        if model not in self._db[brand]:
-            self._db[brand][model] = {}
-        if year not in self._db[brand][model]:
-            self._db[brand][model][year] = {}
-        if variant not in self._db[brand][model][year]:
-            self._db[brand][model][year][variant] = []
-        self._db[brand][model][year][variant].append(price)
+            # In some Mazda models, we add Mazda in front of the model name.
+            # e.g., Mazda 2, Mazda 3, Mazda 5, Mazda 6, Mazda 8.
+            if brand == 'Mazda' and len(model) == 1:
+                model = 'Mazda ' + model
+
+            # Insert a new entry to the data structure.
+            if brand not in self._db:
+                self._db[brand] = {}
+            if model not in self._db[brand]:
+                self._db[brand][model] = {}
+            if year not in self._db[brand][model]:
+                self._db[brand][model][year] = {}
+            if variant not in self._db[brand][model][year]:
+                self._db[brand][model][year][variant] = []
+            self._db[brand][model][year][variant].append(price)
 
     def _convert_to_variant(self, title, brand, model, year, transmission):
         variant = title
-        # Remove any brand name, model name, and year from the variant.
-        variant = variant.replace(brand, '')
-        variant = variant.replace(model, '')
-        variant = variant.replace(year, '')
+
+        # Remove any year, brand, and model name from the variant.
+        # The extra whitespace is to ensure only whole words are replaced.
+        variant = variant.replace(year + ' ', '', 1)
+        variant = variant.replace(brand + ' ', '', 1)
+        variant = variant.replace(model + ' ', '', 1)
         # Remove any double spaces from the variant.
         variant = variant.replace('  ', ' ')
         # Remove known keywords from the back of the variant.
@@ -103,7 +111,9 @@ class PriceDb():
 
         # Don't add the entry if the variant becomes empty.
         if len(variant) == 0:
-            return
+            return None
+
+        # TODO. Selectively add Diesel or Petrol.
 
         # Add M/T or A/T to indicate transmission.
         if transmission == 'Automatic':
@@ -112,11 +122,6 @@ class PriceDb():
             variant = variant + ' M/T'
         # else:
             # TODO. Raise error.
-
-        # In some Mazda models, we add Mazda in front of the model name.
-        # e.g., Mazda 2, Mazda 3, Mazda 5, Mazda 6, Mazda 8.
-        if brand == 'Mazda' and len(model) == 1:
-            model = 'Mazda ' + model
 
         # Fix known typos.
         for (typo, correction) in self._known_variant_typos.items():
