@@ -41,6 +41,8 @@ class PriceDb():
             'Pick-up', 'Sedan', 'SUV', 'Trucks', 'Wagon',
             # Possibly two words
             'Car', 'Van', '4WD', 'Offroad',
+            # Colors
+            'White',
             # Specific technology
             'i-VTEC',
             # Miscellaneous
@@ -143,8 +145,12 @@ class PriceDb():
                 # 'Compact Car', 'City Car', 'Sports Car', and 'Super Car'.
                 variant_words.pop()
             elif (last_word == 'Van' and len(variant_words) > 1
-                and variant_words[-2] in [ 'Blind', 'High' ]):
+                and variant_words[-1] in [ 'Blind', 'High' ]):
                 # This will remove the likes of 'Blind Van', and 'High Van'.
+                variant_words.pop()
+            elif (last_word == 'White' and len(variant_words) > 1
+                and variant_words[-1] == 'Pearl'):
+                # This will remove the likes of 'Pearl White'.
                 variant_words.pop()
 
             if len(variant_words) > 0:
