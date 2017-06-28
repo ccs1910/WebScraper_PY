@@ -49,6 +49,40 @@ class PriceDb():
             'NA', 'Na'
         ]
 
+        self._multi_fuel_models = {
+            # 1.8 Bensin is only released in Brazil (source: Wikipedia).
+            'Spin': {
+                '1.2': 'Bensin', '1.5': 'Bensin', '1.8': 'Bensin',
+                '1.3': 'Diesel'
+            },
+            # Source: Wikipedia.
+            'Captiva': {
+                '2.0': 'Diesel', '2.2': 'Diesel',
+                '2.4': 'Bensin', '3.0': 'Bensin', '3.2': 'Bensin'
+            },
+            # Source: https://en.wikipedia.org/wiki/Hyundai_Starex
+            'H-1': { '2.4': 'Bensin', '2.5': 'Diesel' },
+            'Santa Fe': { '2.2': 'Diesel', '2.4': 'Bensin' },
+            # Only 2.7 Bensin, 2.4 Diesel (newer variants), and 2.5 Diesel
+            # (older variants) are released in Indonesia (source: Wikipedia).
+            'Fortuner': {
+                '2.7': 'Bensin', '4.0': 'Bensin',
+                '2.4': 'Diesel', '2.5': 'Diesel', '2.8': 'Diesel', '3.0': 'Diesel'
+            },
+            # Only 2.0 Bensin, 2.4 Diesel (newer variants), and 2.5 Diesel
+            # (older variants) are released in Indonesia (source: Wikipedia).
+            'Innova': {
+                '2.0': 'Bensin', '2.7': 'Bensin',
+                '2.4': 'Diesel', '2.5': 'Diesel', '2.8': 'Diesel'
+            },
+            # Below is a typo of the above but must be redundantly included.
+            'Kijang Innova': {
+                '2.0': 'Bensin', '2.7': 'Bensin',
+                '2.4': 'Diesel', '2.5': 'Diesel', '2.8': 'Diesel'
+            }
+            # TODO. Add more models, e.g., Pajero Sport.
+        }
+
         self._known_brand_typos = { 'KIA': 'Kia', 'MINI': 'Mini' }
         self._known_model_typos = {
             'I-10': 'i10', 'I-20': 'i20',               # Hyundai
@@ -115,9 +149,14 @@ class PriceDb():
         if len(variant) == 0:
             return None
 
-        # TODO. Selectively add Diesel or Petrol.
+        # Selectively append "Diesel" or "Bensin" to indicate fuel type.
+        if model in self._multi_fuel_models:
+            for cc in self._multi_fuel_models[model]:
+                if cc in variant:
+                    fuel_type = self._multi_fuel_models[model][cc]
+                    variant = variant + ' ' + fuel_type
 
-        # Add M/T or A/T to indicate transmission.
+        # Append "M/T" or "A/T" to indicate transmission.
         if transmission == 'Automatic':
             variant = variant + ' A/T'
         elif transmission == 'Manual':

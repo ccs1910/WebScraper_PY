@@ -33,7 +33,7 @@ price_db_variant_test_cases = [
         # Case with a double and a single ignorable keywords.
         'title': '2011 Chevrolet Captiva 2.0 Pearl White SUV',
         'brand': 'Chevrolet', 'model': 'Captiva', 'year': '2011',
-        'transmission': 'Automatic', 'expected': '2.0 A/T'
+        'transmission': 'Automatic', 'expected': '2.0 Diesel A/T'
     },
     {
         # Case with two double ignorable keywords (1 of 2).
@@ -58,6 +58,24 @@ price_db_variant_test_cases = [
         'title': '2010 Mitsubishi Pajero Sport 2.5 Exceed SUV',
         'brand': 'Mitsubishi', 'model': 'Pajero Sport', 'year': '2010',
         'transmission': 'Automatic', 'expected': '2.5 Exceed A/T'
+    },
+    {
+        # Case with ambiguous fuel (1 of 2).
+        'title': '2010 Hyundai H-1 2.5 XG MPV',
+        'brand': 'Hyundai', 'model': 'H-1', 'year': '2010',
+        'transmission': 'Automatic', 'expected': '2.5 XG Diesel A/T'
+    },
+    {
+        # Case with ambiguous fuel (2 of 2).
+        'title': '2013 Chevrolet Spin 1.5 LTZ SUV',
+        'brand': 'Chevrolet', 'model': 'Spin', 'year': '2013',
+        'transmission': 'Automatic', 'expected': '1.5 LTZ Bensin A/T'
+    },
+    {
+        # Case with ambiguous fuel and model name typo.
+        'title': '2013 Toyota Kijang Innova 2.0 G Luxury MPV',
+        'brand': 'Toyota', 'model': 'Kijang Innova', 'year': '2013',
+        'transmission': 'Manual', 'expected': '2.0 G Luxury Bensin M/T'
     },
     {
         # Case with brand name typo.
