@@ -41,8 +41,6 @@ class PriceDb():
             'Pick-up', 'Sedan', 'SUV', 'Trucks', 'Wagon',
             # Possibly two words
             'Car', 'Van', '4WD', 'Offroad',
-            # Colors
-            'White',
             # Specific technology
             'i-VTEC',
             # Miscellaneous
@@ -86,6 +84,7 @@ class PriceDb():
         self._known_brand_typos = { 'KIA': 'Kia', 'MINI': 'Mini' }
         self._known_model_typos = {
             'I-10': 'i10', 'I-20': 'i20',               # Hyundai
+            'Ranger Rover': 'Range Rover',              # Land Rover
             'Lexus NX Series': 'NX Series',             # Lexus
             'MINI Cooper S': 'Cooper',                  # Mini
             'Terano': 'Terrano', 'X-trail': 'X-Trail',  # Nissan
@@ -93,12 +92,38 @@ class PriceDb():
             'Side Kick': 'Sidekick',                    # Suzuki
             'Kijang Innova': 'Innova'                   # Toyota
         }
+        # TODO. Some models still need manual improvement: Brio Satya, Gran Max
+        # (Blind Van, Box, MPV, Pick Up).
         self._known_variant_typos = {
+            # Daihatsu Gran Max
+            'BOX': 'Box',
             # Daihatsu Xenia
-            'ATTIVO': 'Attivo', 'DELUXE': 'Deluxe', 'DELUXE+': 'Deluxe+',
-            'FAMILY': 'Family', 'SPORTY': 'Sporty',
+            'ATTIVO': 'Attivo', 'DELUXE': 'Deluxe',
+            'FAMILY': 'Family', 'SPORTY': 'Sporty', 'PLUS': 'Plus',
             # Daihatsu Terios
-            'ADVENTURE': 'Adventure', 'EXTRA': 'Extra'
+            'ADVENTURE': 'Adventure', 'ELEGANT': 'Elegant', 'EXTRA': 'Extra',
+            # Datsun Go
+            'A-OPTION': 'A-Option', 'T-ACTIVE': 'T-Active',
+            'T-OPTION': 'T-Option', 'T-STYLE': 'T-Style',
+            # Isuzu Panther
+            'GRAND': 'Grand', 'SMART': 'Smart', 'TOURING': 'Touring',
+            # Isuzu Pick Up
+            '3 WAY': '3 Way',
+            # Mini Countryman
+            'JCW': 'John Cooper Works',
+            # Mitsubishi Mirage
+            'EXCEED': 'Exceed',
+            # Typos below are introduced because of limited sample quantity.
+            # By removing these phrases, we merge a small variant with its
+            # more generic variant. The spare space at the end is necessary.
+            'Pearl White ': '',                 # Chevrolet Captiva
+            'White Premier ': '',               # Daihatsu Luxio
+            'Black Top Limited Edition ': '',   # Honda Jazz
+            'Red Hot Package ': '',             # Mini Cooper
+            'S C Package ': '',                 # Toyota Alphard
+            # Nissan Juke (this one shall be temporary, because there are
+            # significant price differences between these variants)
+            'Black Interior ': '', 'Red Interior ': '', 'Red Edition ': ''
         }
 
 
@@ -186,10 +211,6 @@ class PriceDb():
             elif (last_word == 'Van' and len(variant_words) > 1
                 and variant_words[-1] in [ 'Blind', 'High' ]):
                 # This will remove the likes of 'Blind Van', and 'High Van'.
-                variant_words.pop()
-            elif (last_word == 'White' and len(variant_words) > 1
-                and variant_words[-1] == 'Pearl'):
-                # This will remove the likes of 'Pearl White'.
                 variant_words.pop()
 
             if len(variant_words) > 0:
