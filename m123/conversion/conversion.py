@@ -39,6 +39,10 @@ class PriceDb():
             # Body types
             'Box', 'Hatchback', 'Jeep', 'Minibus', 'Minivans', 'MPV',
             'Pick-up', 'Sedan', 'SUV', 'Trucks', 'Wagon',
+            # Fuel types, because they will be added later into the variant
+            # when necessary. By ignoring then here, we prevent duplicate fuel
+            # type to appear in the resulting variant.
+            'Bensin', 'Diesel', 'Petrol',
             # Possibly two words
             'Car', 'Van', '4WD', 'Offroad',
             # Specific technology
@@ -48,11 +52,6 @@ class PriceDb():
         ]
 
         self._multi_fuel_models = {
-            # 1.8 Bensin is only released in Brazil (source: Wikipedia).
-            'Spin': {
-                '1.2': 'Bensin', '1.5': 'Bensin', '1.8': 'Bensin',
-                '1.3': 'Diesel'
-            },
             # Source: Wikipedia.
             'Captiva': {
                 '2.0': 'Diesel', '2.2': 'Diesel',
@@ -77,8 +76,12 @@ class PriceDb():
             'Kijang Innova': {
                 '2.0': 'Bensin', '2.7': 'Bensin',
                 '2.4': 'Diesel', '2.5': 'Diesel', '2.8': 'Diesel'
-            }
-            # TODO. Add more models, e.g., Pajero Sport.
+            },
+            # Below we only include one fuel type because it has significantly
+            # low population.
+            'Pajero': { '3.0': 'Bensin' },
+            'Pajero Sport': { '3.0': 'Bensin' },
+            'Spin': { '1.3': 'Diesel' }
         }
 
         self._known_brand_typos = { 'KIA': 'Kia', 'MINI': 'Mini' }

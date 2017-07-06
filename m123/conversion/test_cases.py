@@ -12,13 +12,13 @@ price_db_variant_test_cases = [
         'transmission': 'Automatic', 'expected': '3.5 V6 A/T'
     },
     {
-        # Case with duplicate engine displacement.
+        # Case with duplicate and misformat engine displacement (1 of 2).
         'title': '2011 Nissan March 1.2 1.2L Hatchback',
         'brand': 'Nissan', 'model': 'March', 'year': '2011',
         'transmission': 'Automatic', 'expected': '1.2 A/T'
     },
     {
-        # Case with duplicate engine displacement.
+        # Case with duplicate and misformat engine displacement (2 of 2).
         'title': '2014 Honda Civic 2.0 2 Sedan',
         'brand': 'Honda', 'model': 'Civic', 'year': '2014',
         'transmission': 'Automatic', 'expected': '2.0 A/T'
@@ -28,12 +28,6 @@ price_db_variant_test_cases = [
         'title': '2016 Toyota Vellfire 2.5 G Limited Van Wagon',
         'brand': 'Toyota', 'model': 'Vellfire', 'year': '2016',
         'transmission': 'Automatic', 'expected': '2.5 G Limited A/T'
-    },
-    {
-        # Case with a double and a single ignorable keywords.
-        'title': '2011 Chevrolet Captiva 2.0 Pearl White SUV',
-        'brand': 'Chevrolet', 'model': 'Captiva', 'year': '2011',
-        'transmission': 'Automatic', 'expected': '2.0 Diesel A/T'
     },
     {
         # Case with two double ignorable keywords (1 of 2).
@@ -48,31 +42,37 @@ price_db_variant_test_cases = [
         'transmission': 'Manual', 'expected': '1.5 M/T'
     },
     {
-        # Case with two-word brand name.
+        # Case with a two-word brand name.
         'title': '2004 Land Rover Range Rover 4.4 Vogue SUV',
         'brand': 'Land Rover', 'model': 'Range Rover', 'year': '2004',
         'transmission': 'Automatic', 'expected': '4.4 Vogue A/T'
     },
     {
-        # Case with two-word model name.
-        'title': '2010 Mitsubishi Pajero Sport 2.5 Exceed SUV',
-        'brand': 'Mitsubishi', 'model': 'Pajero Sport', 'year': '2010',
-        'transmission': 'Automatic', 'expected': '2.5 Exceed A/T'
+        # Case with a two-word model name.
+        'title': '2014 Mitsubishi Pajero Sport 3.0 V6 SUV',
+        'brand': 'Mitsubishi', 'model': 'Pajero Sport', 'year': '2014',
+        'transmission': 'Automatic', 'expected': '3.0 V6 Bensin A/T'
     },
     {
-        # Case with ambiguous fuel (1 of 2).
+        # Case with an ambiguous fuel type (1 of 2).
         'title': '2010 Hyundai H-1 2.5 XG MPV',
         'brand': 'Hyundai', 'model': 'H-1', 'year': '2010',
         'transmission': 'Automatic', 'expected': '2.5 XG Diesel A/T'
     },
     {
-        # Case with ambiguous fuel (2 of 2).
-        'title': '2013 Chevrolet Spin 1.5 LTZ SUV',
-        'brand': 'Chevrolet', 'model': 'Spin', 'year': '2013',
-        'transmission': 'Automatic', 'expected': '1.5 LTZ Bensin A/T'
+        # Case with an ambiguous fuel type (2 of 2).
+        'title': '2016 Toyota Fortuner 2.7 SRZ SUV',
+        'brand': 'Toyota', 'model': 'Fortuner', 'year': '2016',
+        'transmission': 'Automatic', 'expected': '2.7 SRZ Bensin A/T'
     },
     {
-        # Case with ambiguous fuel and model name typo.
+        # Case with a minority fuel type.
+        'title': '2013 Chevrolet Spin 1.5 LTZ SUV',
+        'brand': 'Chevrolet', 'model': 'Spin', 'year': '2013',
+        'transmission': 'Automatic', 'expected': '1.5 LTZ A/T'
+    },
+    {
+        # Case with an ambiguous fuel type and a model name typo.
         'title': '2013 Toyota Kijang Innova 2.0 G Luxury MPV',
         'brand': 'Toyota', 'model': 'Kijang Innova', 'year': '2013',
         'transmission': 'Manual', 'expected': '2.0 G Luxury Bensin M/T'
