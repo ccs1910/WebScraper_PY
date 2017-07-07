@@ -144,6 +144,12 @@ price_db_variant_test_cases = [
         'transmission': 'Manual', 'expected': '1.6 M/T'
     },
     {
+        # Case with Karimun Wagon R.
+        'title': '2014 Suzuki Karimun Wagon R 1.0 DILAGO Wagon R Hatchback',
+        'brand': 'Suzuki', 'model': 'Karimun Wagon R', 'year': '2014',
+        'transmission': 'Manual', 'expected': '1.0 Dilago M/T'
+    },
+    {
         # Case with Mazda numerical model.
         'title': '2015 Mazda 2 1.5 R Hatchback',
         'brand': 'Mazda', 'model': '2', 'year': '2015',

@@ -90,13 +90,15 @@ class PriceDb():
             'Ranger Rover': 'Range Rover',              # Land Rover
             'Lexus NX Series': 'NX Series',             # Lexus
             'MINI Cooper S': 'Cooper',                  # Mini
+            'Colt T120 SS': 'Colt T120ss',              # Mitsubishi
+            'Colt T120SS': 'Colt T120ss',               # Mitsubishi
             'Terano': 'Terrano', 'X-trail': 'X-Trail',  # Nissan
             'Gen 2': 'Gen-2',                           # Proton
             'Side Kick': 'Sidekick',                    # Suzuki
             'Kijang Innova': 'Innova'                   # Toyota
         }
-        # TODO. Some models still need manual improvement: Brio Satya, Gran Max
-        # (Blind Van, Box, MPV, Pick Up).
+        # TODO. Some models still need manual improvement, e.g., Brio Satya,
+        # Camry Hybrid, Sirion D, and Gran Max (Blind Van, Box, MPV, Pick Up).
         self._known_variant_typos = {
             # Daihatsu Gran Max
             'BOX': 'Box',
@@ -116,6 +118,9 @@ class PriceDb():
             'JCW': 'John Cooper Works',
             # Mitsubishi Mirage
             'EXCEED': 'Exceed',
+            # Suzuki Karimun Wagon R
+            'DILAGO': 'Dilago',
+            'Wagon R ': '',  # Because the model name already contains Wagon R.
             # Typos below are introduced because of limited sample quantity.
             # By removing these phrases, we merge a small variant with its
             # more generic variant. The spare space at the end is necessary.
