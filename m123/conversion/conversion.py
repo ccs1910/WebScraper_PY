@@ -118,6 +118,7 @@ class PriceDb():
             'JCW': 'John Cooper Works',
             # Mitsubishi Mirage
             'EXCEED': 'Exceed',
+            # TODO. Some BMW model names are also repeated in variant names.
             # Suzuki Karimun Wagon R
             'DILAGO': 'Dilago',
             'Wagon R ': '',  # Because the model name already contains Wagon R.
@@ -132,6 +133,17 @@ class PriceDb():
             # Nissan Juke (this one shall be temporary, because there are
             # significant price differences between these variants)
             'Black Interior ': '', 'Red Interior ': '', 'Red Edition ': ''
+        }
+
+        # These are the phrases in variant names that may be eliminated. By
+        # doing so, we merge several specific but similarly priced variants
+        # into one variant which has better sample quantity.
+        self._minor_variants = {
+            'BMW': [
+                'Business', 'Comfort', 'Edition', 'Luxury',
+                'Modern', 'Sport', 'Touring', 'Urban'
+            ],
+            'Mercedes-Benz': [ 'Classic', 'Exclusive', 'Sport', 'Urban' ]
         }
 
 
@@ -200,6 +212,11 @@ class PriceDb():
         # Fix known typos.
         for (typo, correction) in self._known_variant_typos.items():
             variant = variant.replace(typo, correction)
+
+        # Merge minor variants.
+        if brand in self._minor_variants:
+            for phrase in self._minor_variants[brand]:
+                variant = variant.replace(phrase + ' ', '')
 
         # TODO. Engine displacement should be consistently before/after variant.
 

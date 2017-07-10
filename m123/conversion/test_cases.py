@@ -138,6 +138,18 @@ price_db_variant_test_cases = [
         'transmission': 'Automatic', 'expected': '1.5 RX Revolt A/T'
     },
     {
+        # Case with BMW minor variants.
+        'title': '2010 BMW 320i 2.0 Business Edition Sedan',
+        'brand': 'BMW', 'model': '320i', 'year': '2010',
+        'transmission': 'Automatic', 'expected': '2.0 A/T'
+    },
+    {
+        # Case with Mercedes-Benz minor variants.
+        'title': '2014 Mercedes-Benz CLA200 1.6 Urban Coupe',
+        'brand': 'Mercedes-Benz', 'model': 'CLA200', 'year': '2014',
+        'transmission': 'Automatic', 'expected': '1.6 Coupe A/T'
+    },
+    {
         # Case where brand name is a substring of model name.
         'title': '2013 MINI MINI Cooper S 1.6 Sedan',
         'brand': 'MINI', 'model': 'MINI Cooper S', 'year': '2013',
