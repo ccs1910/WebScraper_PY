@@ -12,16 +12,34 @@ price_db_variant_test_cases = [
         'transmission': 'Automatic', 'expected': '3.5 V6 A/T'
     },
     {
-        # Case with duplicate and misformat engine displacement (1 of 2).
+        # Case with duplicate and misformat engine displacements (1 of 2).
         'title': '2011 Nissan March 1.2 1.2L Hatchback',
         'brand': 'Nissan', 'model': 'March', 'year': '2011',
         'transmission': 'Automatic', 'expected': '1.2 A/T'
     },
     {
-        # Case with duplicate and misformat engine displacement (2 of 2).
+        # Case with duplicate and misformat engine displacements (2 of 2).
         'title': '2014 Honda Civic 2.0 2 Sedan',
         'brand': 'Honda', 'model': 'Civic', 'year': '2014',
         'transmission': 'Automatic', 'expected': '2.0 A/T'
+    },
+    {
+        # Case with duplicate model names (1 of 3).
+        'title': '2012 Peugeot 107 1.0 107 Hatchback',
+        'brand': 'Peugeot', 'model': '107', 'year': '2012',
+        'transmission': 'Automatic', 'expected': '1.0 A/T'
+    },
+    {
+        # Case with duplicate model names (2 of 3).
+        'title': '2014 Subaru WRX STi 2.5 WRX STi Sedan',
+        'brand': 'Subaru', 'model': 'WRX STi', 'year': '2014',
+        'transmission': 'Manual', 'expected': '2.5 M/T'
+    },
+    {
+        # Case with duplicate model names (3 of 3).
+        'title': '2014 Porsche Panamera 3.0 Panamera S Fastback',
+        'brand': 'Porsche', 'model': 'Panamera', 'year': '2014',
+        'transmission': 'Automatic', 'expected': '3.0 S Fastback A/T'
     },
     {
         # Case with two single ignorable keywords.
@@ -150,10 +168,22 @@ price_db_variant_test_cases = [
         'transmission': 'Automatic', 'expected': '1.6 Coupe A/T'
     },
     {
-        # Case where brand name is a substring of model name.
+        # Case where the brand name is a substring of the model name.
         'title': '2013 MINI MINI Cooper S 1.6 Sedan',
         'brand': 'MINI', 'model': 'MINI Cooper S', 'year': '2013',
         'transmission': 'Manual', 'expected': '1.6 M/T'
+    },
+    {
+        # Case where the model name is a substring of the variant name.
+        'title': '2015 MINI Cooper 2.0 John Cooper Works Hatchback',
+        'brand': 'MINI', 'model': 'Cooper', 'year': '2015',
+        'transmission': 'Automatic', 'expected': '2.0 John Cooper Works A/T'
+    },
+    {
+        # Case where the year is a substring of the model name.
+        'title': '2000 Mazda E2000 2.0 Ltd Van',
+        'brand': 'Mazda', 'model': 'E2000', 'year': '2000',
+        'transmission': 'Manual', 'expected': '2.0 Ltd M/T'
     },
     {
         # Case with Karimun Wagon R.

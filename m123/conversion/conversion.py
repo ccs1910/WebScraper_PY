@@ -178,17 +178,30 @@ class PriceDb():
     def _convert_to_variant(self, title, brand, model, year, transmission):
         variant = title
 
-        # Remove any year, brand, and model name from the variant.
-        # The extra whitespace is to ensure only whole words are replaced.
-        variant = variant.replace(year + ' ', '', 1)
-        variant = variant.replace(brand + ' ', '', 1)
-        variant = variant.replace(model + ' ', '', 1)
+        # Remove any occurence of the model name from the variant. This step is
+        # done first before removal of year and brand name because of the fact
+        # that a few model names contain year (E2000) or brand (MINI Cooper S).
+        if model == 'Cooper':
+            # Exception for John Cooper Works. Only remove the first occurence.
+            variant = variant.replace('Cooper ', '', 1)
+        elif len(model) == 1 and model.isdigit():
+            # Special Exception for Mazda 2, 3, 5, 6, and 8. Include brand name
+            # in the search.
+            variant = variant.replace(brand + ' ' + model + ' ', '')
+        else:
+            variant = variant.replace(model + ' ', '')
+        # Remove any occurence of year and the brand name. As usual, we also
+        # include extra whitespace to ensure only whole words are replaced.
+        variant = variant.replace(year + ' ', '')
+        variant = variant.replace(brand + ' ', '')
         # Remove any double spaces from the variant.
         variant = variant.replace('  ', ' ')
         # Remove known keywords from the back of the variant.
         variant = self._remove_keywords(variant)
-        # Remove duplicate words
+        # Remove any duplicate words.
         variant = self._remove_duplicate_words(variant)
+
+        # TODO. Engine displacement should be consistently before/after variant.
 
         # Don't add the entry if the variant becomes empty.
         if len(variant) == 0:
@@ -212,13 +225,10 @@ class PriceDb():
         # Fix known typos.
         for (typo, correction) in self._known_variant_typos.items():
             variant = variant.replace(typo, correction)
-
         # Merge minor variants.
         if brand in self._minor_variants:
             for phrase in self._minor_variants[brand]:
                 variant = variant.replace(phrase + ' ', '')
-
-        # TODO. Engine displacement should be consistently before/after variant.
 
         return variant
 
