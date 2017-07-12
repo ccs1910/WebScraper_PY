@@ -121,18 +121,8 @@ class PriceDb():
             # TODO. Some BMW model names are also repeated in variant names.
             # Suzuki Karimun Wagon R
             'DILAGO': 'Dilago',
-            'Wagon R ': '',  # Because the model name already contains Wagon R.
-            # Typos below are introduced because of limited sample quantity.
-            # By removing these phrases, we merge a small variant with its
-            # more generic variant. The spare space at the end is necessary.
-            'Pearl White ': '',                 # Chevrolet Captiva
-            'White Premier ': '',               # Daihatsu Luxio
-            'Black Top Limited Edition ': '',   # Honda Jazz
-            'Red Hot Package ': '',             # Mini Cooper
-            'S C Package ': '',                 # Toyota Alphard
-            # Nissan Juke (this one shall be temporary, because there are
-            # significant price differences between these variants)
-            'Black Interior ': '', 'Red Interior ': '', 'Red Edition ': ''
+            # Strange word.
+            'Auomatic ': ''
         }
 
         # These are the phrases in variant names that may be eliminated. By
@@ -143,7 +133,16 @@ class PriceDb():
                 'Business', 'Comfort', 'Edition', 'Luxury',
                 'Modern', 'Sport', 'Touring', 'Urban'
             ],
-            'Mercedes-Benz': [ 'Classic', 'Exclusive', 'Sport', 'Urban' ]
+            'Chevrolet': [ 'Pearl White' ],
+            'Daihatsu': [ 'White Premier' ],
+            'Honda': [ 'Black Top Limited Edition' ],
+            'MINI': [ 'Red Hot Package' ],
+            'Mercedes-Benz': [ 'Classic', 'Exclusive', 'Sport', 'Urban' ],
+            # Nissan Juke (this one shall be temporary, because there are
+            # significant price differences between these variants).
+            'Nissan': [ 'Black Interior', 'Red Interior', 'Red Edition' ],
+            'Suzuki': [ 'Wagon R' ], # Already exists in the model name.
+            'Toyota': [ 'S C Package' ]
         }
 
 

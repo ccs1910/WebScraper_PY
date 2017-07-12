@@ -120,49 +120,49 @@ price_db_variant_test_cases = [
         'transmission': 'Manual', 'expected': '1.2 T-Style M/T'
     },
     {
-        # Case with an edition-related typo (1 of 3).
+        # Case with an edition-related variant (1 of 3).
         'title': '2015 Honda Jazz 1.5 RS Black Top Limited Edition Hatchback',
         'brand': 'Honda', 'model': 'Jazz', 'year': '2015',
         'transmission': 'Automatic', 'expected': '1.5 RS A/T'
     },
     {
-        # Case with an edition-related typo (2 of 3).
+        # Case with an edition-related variant (2 of 3).
         'title': '2011 MINI Cooper 1.6 S Red Hot Package Hatchback',
         'brand': 'MINI', 'model': 'Cooper', 'year': '2011',
         'transmission': 'Automatic', 'expected': '1.6 S A/T'
     },
     {
-        # Case with an edition-related typo (3 of 3).
+        # Case with an edition-related variant (3 of 3).
         'title': '2016 Toyota Alphard 2.5 G S C Package Van Wagon',
         'brand': 'Toyota', 'model': 'Alphard', 'year': '2016',
         'transmission': 'Automatic', 'expected': '2.5 G A/T'
     },
     {
-        # Case with a color-related typo (1 of 3).
+        # Case with a color-related variant (1 of 3).
         'title': '2011 Chevrolet Captiva 2.0 Pearl White SUV',
         'brand': 'Chevrolet', 'model': 'Captiva', 'year': '2011',
         'transmission': 'Automatic', 'expected': '2.0 Diesel A/T'
     },
     {
-        # Case with a color-related typo (2 of 3).
+        # Case with a color-related variant (2 of 3).
         'title': '2010 Daihatsu Luxio 1.5 X White Premier MPV',
         'brand': 'Daihatsu', 'model': 'Luxio', 'year': '2010',
         'transmission': 'Manual', 'expected': '1.5 X M/T'
     },
     {
-        # Case with an edition-related typo (3 of 3).
+        # Case with an edition-related variant (3 of 3).
         'title': '2015 Nissan Juke 1.5 RX Red Interior Revolt SUV',
         'brand': 'Nissan', 'model': 'Juke', 'year': '2015',
         'transmission': 'Automatic', 'expected': '1.5 RX Revolt A/T'
     },
     {
-        # Case with BMW minor variants.
+        # Case with a BMW minor variant.
         'title': '2010 BMW 320i 2.0 Business Edition Sedan',
         'brand': 'BMW', 'model': '320i', 'year': '2010',
         'transmission': 'Automatic', 'expected': '2.0 A/T'
     },
     {
-        # Case with Mercedes-Benz minor variants.
+        # Case with Mercedes-Benz minor variant.
         'title': '2014 Mercedes-Benz CLA200 1.6 Urban Coupe',
         'brand': 'Mercedes-Benz', 'model': 'CLA200', 'year': '2014',
         'transmission': 'Automatic', 'expected': '1.6 Coupe A/T'
